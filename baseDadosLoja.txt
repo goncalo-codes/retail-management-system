@@ -1,0 +1,234 @@
+-- ===========================================
+-- Banco de Dados: lojaDB
+-- Este script cria todas as tabelas e insere dados de exemplo
+-- Inclui Users, Clients, Employees, Products, Categories, Sizes, Stock e Sales
+-- Comentários explicam cada parte do script
+-- ===========================================
+
+-- 1. Criar o banco de dados
+IF DB_ID('lojaDB') IS NULL
+BEGIN
+    CREATE DATABASE lojaDB;
+END
+GO
+
+-- Usar o banco lojaDB
+USE lojaDB;
+GO
+
+-- ===========================================
+-- 2. Tabela de Usuários
+-- Armazena informações básicas de login e tipo de usuário
+-- ===========================================
+CREATE TABLE Users (
+    UserId INT PRIMARY KEY IDENTITY(1,1),      -- ID único automático
+    LoginName NVARCHAR(100) UNIQUE NOT NULL,   -- Nome de login
+    Email NVARCHAR(100) UNIQUE,                -- Email opcional
+    Passwd NVARCHAR(256) NOT NULL,             -- Senha (idealmente hash)
+    UserType NVARCHAR(50) NOT NULL             -- Tipo: Adm, Manager, Employee, Client
+);
+
+-- Inserir usuários de exemplo
+INSERT INTO Users (LoginName, Email, Passwd, UserType) VALUES 
+('admin1', 'admin1@example.com', 'adminpass', 'Adm'),
+('manager1', 'manager1@example.com', 'managerpass', 'Manager'),
+('employee1', 'employee1@example.com', 'employeepass', 'Employee'),
+('employee2', 'employee2@example.com', 'employeepass2', 'Employee'),
+('client1', 'client1@example.com', 'clientpass', 'Client'),
+('client2', 'client2@example.com', 'clientpass2', 'Client');
+
+-- ===========================================
+-- 3. Tabela de Clientes
+-- Guarda informações pessoais dos clientes
+-- ===========================================
+CREATE TABLE Clients (
+    ClientId INT PRIMARY KEY IDENTITY(1,1),
+    UserId INT NOT NULL,                        -- Chave estrangeira para Users
+    FullName NVARCHAR(150) NOT NULL,            -- Nome completo
+    NIF NVARCHAR(20) NOT NULL,                  -- Número de identificação fiscal
+    PhoneNumber NVARCHAR(20),                   -- Telefone opcional
+    Address NVARCHAR(200),                      -- Endereço opcional
+    FOREIGN KEY (UserId) REFERENCES Users(UserId)
+);
+
+-- Inserir clientes de exemplo
+INSERT INTO Clients (UserId, FullName, NIF, PhoneNumber, Address) VALUES 
+(5, 'John Doe', '123456789', '555-1234', '123 Main St'),
+(6, 'Jane Smith', '987654321', '555-5678', '456 Elm St');
+
+-- ===========================================
+-- 4. Tabela de Departamentos e Cargos (JobDepartments)
+-- Para organizar funcionários por departamento e cargo
+-- ===========================================
+CREATE TABLE JobDepartments (
+    JobDeptId INT PRIMARY KEY IDENTITY(1,1),
+    Department NVARCHAR(100) NOT NULL,
+    JobTitle NVARCHAR(100) NOT NULL,
+    Description NVARCHAR(255)
+);
+
+INSERT INTO JobDepartments (Department, JobTitle, Description)  
+VALUES 
+('IT Support', 'Technician', 'Maintains systems, solves technical issues, and manages hardware/software'),  
+('Marketing', 'Marketing Specialist', 'Develops campaigns and manages customer engagement strategies'),  
+('Finance', 'Accountant', 'Handles budgets, accounting, and financial reporting'),  
+('Inventory', 'Stock Manager', 'Manages stock levels, orders supplies, and ensures availability'),  
+('Customer Service', 'Support Representative', 'Resolves customer complaints and ensures satisfaction'),  
+('Sales Team', 'Sales Associate', 'Focuses on selling products and meeting sales targets'),  
+('Logistics', 'Logistics Coordinator', 'Organizes shipments and manages the supply chain'),  
+('HR', 'HR Specialist', 'Manages hiring, training, and payroll processes');
+
+-- ===========================================
+-- 5. Tabela de Funcionários (Employees)
+-- Guarda informações dos empregados
+-- ===========================================
+CREATE TABLE Employees (
+    EmpId INT PRIMARY KEY IDENTITY(1,1),
+    UserId INT NOT NULL,                        -- Relaciona com Users
+    FullName NVARCHAR(150) NOT NULL,
+    PhoneNumber NVARCHAR(20),
+    Address NVARCHAR(200),
+    JobDeptId INT NOT NULL,                     -- Relaciona com JobDepartments
+    Salary DECIMAL(10,2),
+    DateHired DATE NOT NULL,
+    Status NVARCHAR(10) NOT NULL DEFAULT 'Ativo', -- Status inicial
+    FOREIGN KEY (UserId) REFERENCES Users(UserId),
+    FOREIGN KEY (JobDeptId) REFERENCES JobDepartments(JobDeptId)
+);
+
+-- Inserir funcionários de exemplo
+INSERT INTO Employees (UserId, FullName, PhoneNumber, Address, JobDeptId, Salary, DateHired, Status) VALUES 
+(1, 'Jhon Admin', '555-0001', '231 Pine St', 8, 5000.00, '2024-02-01', 'Active'),
+(2, 'Alice Manager', '555-0002', '789 Oak St', 2, 3500.00, '2024-01-01', 'Active'),
+(3, 'Bob Employee', '555-0003', '321 Pine St', 5, 2500.00, '2024-06-01', 'Active'),
+(4, 'Jorge Employee', '555-0004', '213 Pine St', 1, 1000.00, '2024-02-01', 'Inactive');
+
+-- ===========================================
+-- 6. Tabela de Categorias (Categories)
+-- ===========================================
+CREATE TABLE Categories (
+    CategoryID INT IDENTITY(1,1) PRIMARY KEY,
+    CategoryName NVARCHAR(100) NOT NULL
+);
+
+INSERT INTO Categories (CategoryName) VALUES
+('T-Shirts'),
+('Pants'),
+('Shirts'),
+('Outerwear'),
+('Accessories');
+
+-- ===========================================
+-- 7. Tabela de Produtos (Products)
+-- O campo Image é opcional, permite NULL
+-- Caso queira usar imagens, é necessário que o arquivo exista no caminho acessível pelo SQL Server
+-- Para uso em produção ou GitHub, imagens podem ser deixadas como NULL
+-- ===========================================
+CREATE TABLE Products (
+    ProductID INT IDENTITY(1,1) PRIMARY KEY,
+    ProductName NVARCHAR(100) NOT NULL,
+    Description NVARCHAR(255) NULL,
+    CategoryID INT,
+    Price DECIMAL(10, 2) NOT NULL,
+    DateAdded DATETIME DEFAULT GETDATE(),
+    Image VARBINARY(MAX) NULL,                  -- Campo para imagens (BLOB)
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+);
+
+-- Inserir produtos sem imagens
+INSERT INTO Products (ProductName, Description, CategoryID, Price, DateAdded, Image) VALUES
+('Blue T-Shirt', 'High-quality cotton blue T-shirt', 1, 15.99, GETDATE(), NULL),
+('White T-Shirt', 'Snow-white cotton T-shirt', 1, 20.99, GETDATE(), NULL),
+('Gray Pants', 'Stylish black pants for formal occasions', 2, 29.99, GETDATE(), NULL),
+('Striped Shirt', 'Classic striped button-down shirt', 3, 25.49, GETDATE(), NULL),
+('Winter Coat', 'Warm and cozy winter coat', 4, 89.99, GETDATE(), NULL);
+
+-- ===========================================
+-- OBS: Como usar imagens no banco de dados
+-- ===========================================
+
+-- O campo Image da tabela Products permite armazenar imagens (tipo BLOB), mas não é obrigatório.
+-- Para quem clonar este projeto ou for testar, as imagens podem ser adicionadas após a criação das tabelas.
+
+-- Passo a passo:
+-- 1. Coloque os arquivos de imagem na pasta do projeto que o SQL Server consiga acessar.  
+--    Dentro do projeto temos a pasta \Resources em que você deve seguir o esse caminho:
+--    C:\seuCaminho\Resources
+--    Ex.: blueTshirt.png, whiteTshirt.png, grayPant.png, stripedShirt.png, blackPuffer.png
+
+-- 2. Use OPENROWSET para inserir a imagem no banco.
+--    Exemplo de inserção para o produto "Blue T-Shirt" (ProductID = 1):
+--    UPDATE Products
+--    SET Image = (
+--        SELECT * 
+--        FROM OPENROWSET(
+--            BULK 'C:\seuCaminho\Resources\blueTshirt.png', 
+--            SINGLE_BLOB
+--        ) AS ImageData
+--    )
+--    WHERE ProductID = 1;
+
+-- 3. Repita para os demais produtos trocando o caminho do arquivo e o ProductID.
+
+-- Observações importantes:
+-- - O SQL Server precisa ter **permissão de leitura** nesta pasta.
+-- - Se a pessoa não quiser usar imagens, pode deixar o campo NULL.
+-- - As imagens não precisam estar no Visual Studio, só no caminho físico acessível.
+
+
+-- ===========================================
+-- 8. Tabela de Tamanhos (Sizes)
+-- ===========================================
+CREATE TABLE Sizes (
+    SizeID INT IDENTITY(1,1) PRIMARY KEY,
+    SizeName NVARCHAR(10) NOT NULL
+);
+
+INSERT INTO Sizes (SizeName) VALUES
+('S'),('M'),('L'),('XL'),('XXL');
+
+-- ===========================================
+-- 9. Tabela de Estoque (Stock)
+-- Controla quantidade de cada produto por tamanho
+-- ===========================================
+CREATE TABLE Stock (
+    ProductID INT,
+    SizeID INT,
+    Quantity INT,
+    LastUpdated DATETIME NOT NULL,
+    PRIMARY KEY (ProductID, SizeID),
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
+    FOREIGN KEY (SizeID) REFERENCES Sizes(SizeID)
+);
+
+INSERT INTO Stock (ProductID, SizeID, Quantity, LastUpdated) VALUES
+(1, 1, 50, GETDATE()),
+(1, 2, 30, GETDATE()),
+(2, 3, 40, GETDATE()),
+(3, 4, 25, GETDATE()),
+(4, 5, 15, GETDATE()),
+(5, 1, 10, GETDATE());
+
+-- ===========================================
+-- 10. Tabela de Vendas (Sales)
+-- ===========================================
+CREATE TABLE Sales (
+    SaleId INT PRIMARY KEY IDENTITY(1,1),
+    ClientId INT NOT NULL,
+    EmployeeId INT NULL,
+    ProductId INT NOT NULL,
+    Quantity INT NOT NULL,
+    SaleDate DATETIME NOT NULL,
+    Total DECIMAL(10,2) NOT NULL,
+    SizeID INT NOT NULL,
+    FOREIGN KEY (ClientId) REFERENCES Clients(ClientId),
+    FOREIGN KEY (ProductId) REFERENCES Products(ProductID),
+    FOREIGN KEY (SizeID) REFERENCES Sizes(SizeID)
+);
+
+-- Inserir vendas de exemplo
+INSERT INTO Sales (ClientId, EmployeeId, ProductId, Quantity, SaleDate, Total, SizeID) VALUES
+(1, 1, 1, 2, '2025-01-06', 31.98, 1),
+(2, 1, 2, 1, '2025-01-06', 20.99, 3),
+(1, NULL, 3, 1, '2025-01-07', 29.99, 4),
+(2, NULL, 5, 1, '2025-01-07', 89.99, 1);
