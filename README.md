@@ -1,6 +1,6 @@
 # 🏬 Retail Management System
 
-![Retail Banner](./assets/banner.png)
+![Retail Banner](./assets/banner02.png)
 
 ---
 
