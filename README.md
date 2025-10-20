@@ -14,20 +14,6 @@
 
 ---
 
-## 🧭 Table of Contents
-- 📝 [Short Description](#short-description)
-- 🎞️ [GIFs / Screenshots](#gifs--screenshots)
-- 💻 [Technologies](#technologies)
-- ⚙️ [Installation & Usage](#installation--usage)
-- 🔹 [Database Setup](#database-setup-sql-server)
-- 🖼️ [Images in Database](#images-in-database-optional)
-- 🧩 [System Overview](#system-overview)
-- 🗂️ [Project Structure](#project-structure-summary)
-- 💡 [Project Highlights](#project-highlights)
-- 👨‍💻 [Author](#author)
-
----
-
 ## 📝 Short Description
 
 **Retail Management System** is a Windows Forms application developed as an **academic project** that simulates the main functionalities of a real retail store management system.
@@ -103,7 +89,7 @@ All tables, relationships, and seed data are provided in the following file:
 
 <br>
 
-### 🧭 Setup Steps
+### 🧭 Setup Steps:
 
 1. Open **SQL Server Management Studio (SSMS)**  
 2. Open or copy the content of the file **`baseDadosLoja.txt`**
@@ -140,13 +126,15 @@ SET Image = (
 )
 WHERE ProductID = 1;  -- Change the ProductID accordingly
 ```
+<br>
+---
 
 ## 🧩 System Overview
 
 The application simulates a **real retail management environment**,  
 including four different user roles and multiple **CRUD-based modules**.
 
----
+<br>
 
 ### 👤 User Roles and Permissions
 
@@ -157,7 +145,7 @@ including four different user roles and multiple **CRUD-based modules**.
 | **Employee** | Clients, Sales | Clients, Sales, Stock | Clients, Sales | ❌ |
 | **Client** | N/A | Products, Cart | N/A | N/A |
 
----
+<br>
 
 ### 🧠 CRUD Functionality Breakdown
 
@@ -174,6 +162,8 @@ implemented throughout the `Presentation` layer.
 
 **Additional standalone forms:**  
 `frmLogin`, `frmCart`, `frmAdmin`, `frmManager`, `frmEmployee`, `frmClient`, `frmStock`
+
+<br>
 
 ---
 
