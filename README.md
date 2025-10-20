@@ -15,16 +15,16 @@
 ---
 
 ## 🧭 Table of Contents
-- [📝 Short Description](#short-description)
-- [🎞️ GIFs / Screenshots](#gifs--screenshots)
-- [💻 Technologies](#technologies)
-- [⚙️ Installation & Usage](#installation--usage)
-- [🔹 Database Setup](#database-setup-sql-server)
-- [🖼️ Images in Database](#images-in-database-optional)
-- [🧩 System Overview](#system-overview)
-- [🗂️ Project Structure](#project-structure-summary)
-- [💡 Project Highlights](#project-highlights)
-
+- 📝 [Short Description](#short-description)
+- 🎞️ [GIFs / Screenshots](#gifs--screenshots)
+- 💻 [Technologies](#technologies)
+- ⚙️ [Installation & Usage](#installation--usage)
+- 🔹 [Database Setup](#database-setup-sql-server)
+- 🖼️ [Images in Database](#images-in-database-optional)
+- 🧩 [System Overview](#system-overview)
+- 🗂️ [Project Structure](#project-structure-summary)
+- 💡 [Project Highlights](#project-highlights)
+- 👨‍💻 [Author](#author)
 
 ---
 
