@@ -80,15 +80,6 @@ git clone https://github.com/goncalo-codes/retail-management-system.git
 4. Run the app (Start ▶)
 ```
 
-> ⚠️ **Important:** Before running the app, open `src/Data/Connection.cs` and update the connection string in the `Connection()` constructor to match your SQL Server setup:
->
-> ```csharp
-> conn.ConnectionString = "Data Source=localhost;Initial Catalog=lojaDB;Integrated Security=True;TrustServerCertificate=True;";
-> ```
-> Modify `Data Source`, `Initial Catalog`, or authentication (User ID/Password) if your SQL Server is on another machine, container, or uses SQL login.
-
-
-
 ## 🔹 Database Setup (SQL Server)
 
 This project uses **SQL Server** as the database engine.  
@@ -107,6 +98,15 @@ All tables, relationships, and seed data are provided in the following file:
    - Tables for `Users`, `Clients`, `Employees`, `Categories`, `Products`, `Stock`, `Sales`, and `Sizes`
    - Example data and predefined relationships  
    - Clear comments describing each section and table purpose
+
+<br>
+  
+> ⚠️ **Important:** Before running the app, open `src/Data/Connection.cs` and update the connection string in the `Connection()` constructor to match your SQL Server setup:
+>
+> ```csharp
+> conn.ConnectionString = "Data Source=localhost;Initial Catalog=lojaDB;Integrated Security=True;TrustServerCertificate=True;";
+> ```
+> Modify `Data Source`, `Initial Catalog`, or authentication (User ID/Password) if your SQL Server is on another machine, container, or uses SQL login.
 
 ---
 
