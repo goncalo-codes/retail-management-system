@@ -136,6 +136,7 @@ SET Image = (
 WHERE ProductID = 1;  -- Change the ProductID accordingly
 ```
 <br>
+
 ---
 
 ## 🧩 System Overview
@@ -150,7 +151,7 @@ including four different user roles and multiple **CRUD-based modules**.
 | **Role** | **Can Register** | **Can Consult** | **Can Update** | **Can Delete** |
 |-----------|------------------|-----------------|----------------|----------------|
 | **Admin** | Clients, Employees, Products, Sales | All tables | All entities | ✅ |
-| **Manager** | Clients, Products, Sales | All except Employees | Limited | ✅ |
+| **Manager** | Clients, Products, Sales | All except Employees | All, except Employees | ✅ |
 | **Employee** | Clients, Sales | Clients, Sales, Stock | Clients, Sales | ❌ |
 | **Client** | N/A | Products, Cart | N/A | N/A |
 
