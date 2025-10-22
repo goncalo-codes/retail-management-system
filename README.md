@@ -113,25 +113,35 @@ All tables, relationships, and seed data are provided in the following file:
 
 ## 🖼️ Optional Product Images
 
-The system supports **optional product images** stored as **BLOBs** in the database.  
-Some sample images are already included in `src/Resources/` for reference, but they are **not linked to the database by default** (`Image` column is NULL).
+- The system supports **optional product images** stored as **BLOBs** in the database.  
+- Some sample images are already included in the folder `src/Resources/`.
+- They are **not linked to the database by default** (`Image` column remains `NULL`).
 
-### Steps to add images to the database
-1. **Go to the directory with your path `C:\YourPath\src\Resources`) and copy your image files there.  
-2. **Update each product’s `Image` column** using SQL Server `OPENROWSET`:
+<br>
 
+### ❓ How to Add Images to the Database
 
-To **add or update images**, simply place your image files in this folder and use `INSERT` or `UPDATE` with `OPENROWSET`:
+1. Navigate to your local directory, for example:  
+   `C:\YourPath\src\Resources\`
+2. Add your image files to this folder.  
+3. Use one of the SQL examples below to **insert or update images** in your database.
 
+---
+
+### 💾 Example Commands
 
 ```sql
--- Insert a new product with image (change path to your image)
-INSERT INTO Products (ProductName, Description, Price, Image, CategoryID) VALUES
-('Blue T-Shirt', 'High-quality cotton blue T-shirt', 15.99,  
-    (SELECT * FROM OPENROWSET(BULK 'C:\YourPath\Resources\blueTshirt.png', SINGLE_BLOB) AS ImageData), 1);
+-- Insert a new product with an image
+INSERT INTO Products (ProductName, Description, Price, Image, CategoryID)
+VALUES (
+    'Blue T-Shirt',
+    'High-quality cotton blue T-shirt',
+    15.99,
+    (SELECT * FROM OPENROWSET(BULK 'C:\YourPath\Resources\blueTshirt.png', SINGLE_BLOB) AS ImageData),
+    1
+);
 
-
--- Update an existing product image (change ProductID and path as needed)
+-- Update an existing product image
 UPDATE Products
 SET Image = (
     SELECT * FROM OPENROWSET(BULK 'C:\YourPath\Resources\blueTshirt.png', SINGLE_BLOB) AS ImageData
