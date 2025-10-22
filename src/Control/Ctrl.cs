@@ -314,8 +314,6 @@ namespace projetoLoja.Control
             return operSuccess;
         }
 
-        /*AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*/
-
 
         public List<Dictionary<string, object>> GetProductsFromStock()
         {

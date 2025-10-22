@@ -1381,7 +1381,6 @@ namespace projetoLoja.Data
             return operSuccess;
         }
 
-        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
         public List<Dictionary<string, object>> GetProductsFromStock()
         {

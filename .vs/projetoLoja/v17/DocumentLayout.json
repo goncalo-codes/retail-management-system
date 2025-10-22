@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Documents\\Documents\\GitHub\\retail-management-system\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4077FFDC-737A-4330-8979-B6B3E2577180}|src\\projetoLoja.csproj|d:\\documents\\documents\\github\\retail-management-system\\src\\data\\logincommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4077FFDC-737A-4330-8979-B6B3E2577180}|src\\projetoLoja.csproj|solutionrelative:src\\data\\logincommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4077FFDC-737A-4330-8979-B6B3E2577180}|src\\projetoLoja.csproj|D:\\Documents\\Documents\\GitHub\\retail-management-system\\src\\data\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4077FFDC-737A-4330-8979-B6B3E2577180}|src\\projetoLoja.csproj|solutionrelative:src\\data\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4077FFDC-737A-4330-8979-B6B3E2577180}|src\\projetoLoja.csproj|D:\\Documents\\Documents\\GitHub\\retail-management-system\\src\\control\\ctrl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4077FFDC-737A-4330-8979-B6B3E2577180}|src\\projetoLoja.csproj|solutionrelative:src\\control\\ctrl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginCommands.cs",
+              "DocumentMoniker": "D:\\Documents\\Documents\\GitHub\\retail-management-system\\src\\Data\\LoginCommands.cs",
+              "RelativeDocumentMoniker": "src\\Data\\LoginCommands.cs",
+              "ToolTip": "D:\\Documents\\Documents\\GitHub\\retail-management-system\\src\\Data\\LoginCommands.cs",
+              "RelativeToolTip": "src\\Data\\LoginCommands.cs",
+              "ViewState": "AgIAAFcFAAAAAAAAAAAAAGcFAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T20:04:27.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Connection.cs",
+              "DocumentMoniker": "D:\\Documents\\Documents\\GitHub\\retail-management-system\\src\\Data\\Connection.cs",
+              "RelativeDocumentMoniker": "src\\Data\\Connection.cs",
+              "ToolTip": "D:\\Documents\\Documents\\GitHub\\retail-management-system\\src\\Data\\Connection.cs",
+              "RelativeToolTip": "src\\Data\\Connection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T20:01:25.349Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Ctrl.cs",
+              "DocumentMoniker": "D:\\Documents\\Documents\\GitHub\\retail-management-system\\src\\Control\\Ctrl.cs",
+              "RelativeDocumentMoniker": "src\\Control\\Ctrl.cs",
+              "ToolTip": "D:\\Documents\\Documents\\GitHub\\retail-management-system\\src\\Control\\Ctrl.cs",
+              "RelativeToolTip": "src\\Control\\Ctrl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T19:58:21.795Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
