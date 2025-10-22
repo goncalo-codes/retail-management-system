@@ -111,31 +111,34 @@ All tables, relationships, and seed data are provided in the following file:
 
 ---
 
-## 🖼️ Images in Database (Optional)
+## 🖼️ Optional Product Images
 
 The system supports **optional product images** stored as **BLOBs** in the database.  
 Some sample images are already included in `src/Resources/` for reference, but they are **not linked to the database by default** (`Image` column is NULL).
 
-⚠️ **Important:**  
-- The images must be in a folder that SQL Server can **access with read permissions**.  
-- Simply having them in `src/Resources/` is **not enough**, because SQL Server does not read Visual Studio resource folders automatically.
-
 ### Steps to add images to the database
-
-1. **Create a folder accessible by SQL Server** (example: `C:\RetailImages\`) and copy your image files there.  
+1. **Go to the directory with your path `C:\YourPath\src\Resources`) and copy your image files there.  
 2. **Update each product’s `Image` column** using SQL Server `OPENROWSET`:
 
+
+To **add or update images**, simply place your image files in this folder and use `INSERT` or `UPDATE` with `OPENROWSET`:
+
+
 ```sql
+-- Insert a new product with image (change path to your image)
+INSERT INTO Products (ProductName, Description, Price, Image, CategoryID) VALUES
+('Blue T-Shirt', 'High-quality cotton blue T-shirt', 15.99,  
+    (SELECT * FROM OPENROWSET(BULK 'C:\YourPath\Resources\blueTshirt.png', SINGLE_BLOB) AS ImageData), 1);
+
+
+-- Update an existing product image (change ProductID and path as needed)
 UPDATE Products
 SET Image = (
-    SELECT *
-    FROM OPENROWSET(
-        BULK 'C:\RetailImages\blueTshirt.png',  -- Path to your image
-        SINGLE_BLOB
-    ) AS ImageData
+    SELECT * FROM OPENROWSET(BULK 'C:\YourPath\Resources\blueTshirt.png', SINGLE_BLOB) AS ImageData
 )
-WHERE ProductID = 1;  -- Change the ProductID accordingly
+WHERE ProductID = 1;
 ```
+
 <br>
 
 ---
