@@ -76,8 +76,9 @@ git clone https://github.com/goncalo-codes/retail-management-system.git
 ```bash
 1. Open 'projetoLoja.sln' in Visual Studio 2022
 2. Make sure .NET Framework 4.7.2 is installed
-3. Build the solution (Build → Build Solution)
-4. Run the app (Start ▶)
+3. Do the Database Setup steps (see **Database Setup** section below)
+4. Build the solution (Build → Build Solution)
+5. Run the app (Start ▶)
 ```
 
 ## 🔹 Database Setup (SQL Server)
@@ -218,4 +219,10 @@ retail-management-system/
 
 ---
 
-**Author:** Gonçalo Oliveira
+## 👨‍🏭 My Contributions
+
+- I **led the architectural design and developed the main logic of the system**, structuring it into layered modules (`Data`, `Control`, `Presentation`).  
+- I **built most of the Windows Forms interface**, **implemented CRUD operations** for all entities, and created the user permission logic.  
+- I also worked on **error handling** and **business validations**.
+
+This **`README.md` and repository organization** were fully created by me as a professional showcase of the project.
