@@ -27,7 +27,7 @@ The goal was to go beyond a simple CRUD exercise and build something that actual
     <img src="./assets/retai_thumbnail.png" alt="Clique para assistir a demonstração" width="900">
   </a>
   <br>
-  <ins>Clique na imagem acima para assistir ao vídeo completo no <b>YouTube</b></ins>
+  <ins>Click on the image above to watch the full video on <b>YouTube</b></ins>
 </p>
 
 <br>
